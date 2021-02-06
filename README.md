@@ -1,2 +1,2 @@
 # UnityWebRequest_Demo
-UnityWebRequest class demo projeck.
+UnityWebRequest class demo project.
