@@ -10,6 +10,8 @@ namespace UnityWebRequestDemo
         [SerializeField]
         private Image image;
         [SerializeField]
+        private SpriteContainerSO spriteContainer;
+        [SerializeField]
         private TextMeshProUGUI nameText;
         [SerializeField]
         private TextMeshProUGUI InterestIDText;
@@ -24,7 +26,12 @@ namespace UnityWebRequestDemo
             InterestIDText.text = cloudImage.InterestID.ToString();
             languageText.text = cloudImage.Language;
 
-            Stackeer.Get().Load(cloudImage.PictureUrl).SetWebRequestType(WEB_REQUEST_TYPE.GET_TEXTURE).SetEnableLog(true).Into(image).StartStackeer();
+            Stackeer.Get().Load(cloudImage.PictureUrl)
+                .SetWebRequestType(WEB_REQUEST_TYPE.GET_TEXTURE)
+                .SetLoadingPlaceholder(spriteContainer.loadingSprite)
+                .SetErrorPlaceholder(spriteContainer.errorSprite)
+                .SetEnableLog(true).Into(image)
+                .StartStackeer();
         }
     }
 }

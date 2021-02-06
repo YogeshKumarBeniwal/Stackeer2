@@ -42,6 +42,7 @@ namespace UnityWebRequestDemo
             actionButton.onClick.AddListener(() =>
             {
                 progressText.text = "0%";
+                progressText.color = Color.black;
                 buttonText.text = "Showing...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
@@ -57,6 +58,7 @@ namespace UnityWebRequestDemo
             actionButton.onClick.AddListener(() =>
             {
                 progressText.text = "0%";
+                progressText.color = Color.black;
                 buttonText.text = "Fetching...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
