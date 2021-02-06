@@ -8,7 +8,7 @@ namespace UnityWebRequestDemo
     {
         public static bool isDebuging = false;
 
-        public static CloudImageData loadedServerData = null;
+        public static Root loadedServerData = null;
 
         public static Dictionary<int, string> jsonFormet = new Dictionary<int, string>()
         {
@@ -26,16 +26,16 @@ namespace UnityWebRequestDemo
     [Serializable]
     public class CloudImageData
     {
-        public CloudImage[] roots;
-    }
-
-    [Serializable]
-    public class CloudImage
-    {
         public string Name;
         public string PictureUrl;
         public string DisplayName;
         public string Language;
         public int InterestID;
+    }
+
+    [Serializable]
+    public class Root
+    {
+        public List<CloudImageData> CloudImageData;
     }
 }

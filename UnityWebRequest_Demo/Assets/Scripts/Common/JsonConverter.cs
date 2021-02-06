@@ -12,7 +12,7 @@ namespace UnityWebRequestDemo
         /// <returns></returns>
         public static T DeserializeObject<T>(string jsonData)
         {
-            return JsonUtility.FromJson<T>("{\"CloudImageData\":" + jsonData +"}");
+            return JsonUtility.FromJson<T>("{\"CloudImageData\":" + jsonData + "}");
         }
 
         /// <summary>
