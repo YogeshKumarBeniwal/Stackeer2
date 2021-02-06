@@ -21,6 +21,8 @@ namespace UnityWebRequestDemo
 
         public void SetView()
         {
+            progressText.text = "Let's GO";
+
             if (Stackeer.IsFileAlreadyExists(Global.cloudDataUri))
             {
                 isDataCached = true;
@@ -39,12 +41,12 @@ namespace UnityWebRequestDemo
             actionButton.onClick.RemoveAllListeners();
             actionButton.onClick.AddListener(() =>
             {
-
+                progressText.text = "0%";
                 buttonText.text = "Showing...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
                 .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataReady)
-                .SetEnableLog(true).StartStackeer();
+                .WithDownloadProgressChangedAction(UpdateProgress).SetEnableLog(true).StartStackeer();
             });
         }
 
@@ -54,12 +56,18 @@ namespace UnityWebRequestDemo
             actionButton.onClick.RemoveAllListeners();
             actionButton.onClick.AddListener(() =>
             {
+                progressText.text = "0%";
                 buttonText.text = "Fetching...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
                 .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataDownloaded)
-                .SetEnableLog(true).StartStackeer();
+                .WithDownloadProgressChangedAction(UpdateProgress).SetEnableLog(true).StartStackeer();
             });
+        }
+
+        private void UpdateProgress(int progress)
+        {
+            progressText.text = progress + "%";
         }
 
         private void OnJsonLoaded(string data)
