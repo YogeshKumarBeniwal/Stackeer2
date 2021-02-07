@@ -38,6 +38,8 @@ namespace UnityWebRequestDemo
         private void OnDataAlreadyCached()
         {
             buttonText.text = "Show";
+            progressText.color = Color.green;
+            progressText.text = "Done!";
             actionButton.onClick.RemoveAllListeners();
             actionButton.onClick.AddListener(() =>
             {
@@ -47,7 +49,7 @@ namespace UnityWebRequestDemo
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
                 .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataReady)
-                .WithDownloadProgressChangedAction(UpdateProgress).SetEnableLog(true).StartStackeer();
+                .WithDownloadProgressChangedAction(UpdateProgress).StartStackeer();
             });
         }
 
@@ -63,7 +65,7 @@ namespace UnityWebRequestDemo
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
                 .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataDownloaded)
-                .WithDownloadProgressChangedAction(UpdateProgress).SetEnableLog(true).StartStackeer();
+                .WithDownloadProgressChangedAction(UpdateProgress).StartStackeer();
             });
         }
 

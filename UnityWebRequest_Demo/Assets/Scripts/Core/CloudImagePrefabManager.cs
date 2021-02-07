@@ -30,7 +30,7 @@ namespace UnityWebRequestDemo
                 .SetWebRequestType(WEB_REQUEST_TYPE.GET_TEXTURE)
                 .SetLoadingPlaceholder(spriteContainer.loadingSprite)
                 .SetErrorPlaceholder(spriteContainer.errorSprite)
-                .SetEnableLog(true).Into(image)
+                .SetEnableLog(Global.isDebuging).Into(image)
                 .StartStackeer();
         }
     }

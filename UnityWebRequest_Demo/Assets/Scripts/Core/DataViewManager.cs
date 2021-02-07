@@ -10,43 +10,51 @@ namespace UnityWebRequestDemo
         [SerializeField]
         private RectTransform prefabContainer;
 
+        private bool isSetting = false;
+
         public void SetView()
         {
-            if (Global.loadedServerData == null)
+            if (!isSetting)
             {
-                if (Global.isDebuging)
-                    Debug.LogError("Failed to set DataView!");
+                isSetting = true;
 
-                return;
-            }
+                if (Global.loadedServerData == null)
+                {
+                    if (Global.isDebuging)
+                        Debug.LogError("Failed to set DataView!");
 
-            List<CloudImageData> cloudImages = Global.loadedServerData.CloudImageData;
-            int childCount = prefabContainer.childCount;
+                    return;
+                }
 
-            CloudImagePrefabManager tempObj;
-            int i = 0;
+                List<CloudImageData> cloudImages = Global.loadedServerData.CloudImageData;
+                int childCount = prefabContainer.childCount;
 
-            for (i = 0; i < cloudImages.Count; i++)
-            {
+                CloudImagePrefabManager tempObj;
+                int i = 0;
+
+                for (i = 0; i < cloudImages.Count; i++)
+                {
+                    if (i < childCount)
+                    {
+                        tempObj = prefabContainer.GetChild(i).GetComponent<CloudImagePrefabManager>();
+                        tempObj.SetPrefab(cloudImages[i]);
+                        continue;
+                    }
+
+                    tempObj = Instantiate(cloudImagePrefab, prefabContainer);
+                    tempObj.SetPrefab(cloudImages[i]);
+                }
+
                 if (i < childCount)
                 {
-                    tempObj = prefabContainer.GetChild(i).GetComponent<CloudImagePrefabManager>();
-                    tempObj.SetPrefab(cloudImages[i]);
-                    continue;
+                    for (int j = i; j < childCount; j++)
+                    {
+                        prefabContainer.GetChild(i).gameObject.SetActive(false);
+                    }
                 }
 
-                tempObj = Instantiate(cloudImagePrefab, prefabContainer);
-                tempObj.SetPrefab(cloudImages[i]);
+                isSetting = false;
             }
-
-            if (i < childCount)
-            {
-                for (int j = i; j < childCount; j++)
-                {
-                    prefabContainer.GetChild(i).gameObject.SetActive(false);
-                }
-            }
-
         }
     }
 }
