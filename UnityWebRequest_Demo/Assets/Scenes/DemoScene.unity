@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a419b6ae62ed3b488af6c07eb76a32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearCacheOnStart: 1
+  clearCacheOnStart: 0
   dataViewManager: {fileID: 982291882}
   buttonViewManager: {fileID: 1375528272}
 --- !u!1 &1862673826
