@@ -16,8 +16,8 @@ namespace UnityWebRequestDemo
 
         private bool isDataCached = false;
 
-        public delegate void DownloadDoneAction();
-        public static event DownloadDoneAction OnDownloadDone;
+        public delegate void CloudDataReadyAction();
+        public static event CloudDataReadyAction OnCloudDataReady;
 
         public void SetView()
         {
@@ -107,7 +107,7 @@ namespace UnityWebRequestDemo
 
         private void OnDataReady()
         {
-            OnDownloadDone();
+            OnCloudDataReady();
         }
     }
 }

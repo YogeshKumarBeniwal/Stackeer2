@@ -14,12 +14,12 @@ namespace UnityWebRequestDemo
 
         private void OnEnable()
         {
-            ButtonViewManager.OnDownloadDone += ShowDataView;
+            ButtonViewManager.OnCloudDataReady += ShowDataView;
         }
 
         private void OnDisable()
         {
-            ButtonViewManager.OnDownloadDone -= ShowDataView;
+            ButtonViewManager.OnCloudDataReady -= ShowDataView;
         }
 
         private void Start()
