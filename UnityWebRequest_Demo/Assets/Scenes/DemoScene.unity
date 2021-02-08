@@ -822,7 +822,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1075,9 +1075,9 @@ GameObject:
   - component: {fileID: 1375528269}
   - component: {fileID: 1375528271}
   - component: {fileID: 1375528270}
-  - component: {fileID: 1375528272}
   - component: {fileID: 1375528274}
   - component: {fileID: 1375528273}
+  - component: {fileID: 1375528272}
   m_Layer: 5
   m_Name: ButtonView
   m_TagString: Untagged
@@ -1140,7 +1140,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
