@@ -10,6 +10,8 @@ namespace UnityWebRequestDemo
         [SerializeField]
         private Button actionButton;
         [SerializeField]
+        private Button binButton;
+        [SerializeField]
         private TextMeshProUGUI buttonText;
         [SerializeField]
         private TextMeshProUGUI progressText;
@@ -18,6 +20,15 @@ namespace UnityWebRequestDemo
 
         public delegate void CloudDataReadyAction();
         public static event CloudDataReadyAction OnCloudDataReady;
+
+        private void Awake()
+        {
+            binButton.onClick.AddListener(() =>
+            {
+                ClearAllCachedData();
+                SetView();
+            });
+        }
 
         public void SetView()
         {
@@ -35,8 +46,14 @@ namespace UnityWebRequestDemo
             }
         }
 
+        private void ClearAllCachedData()
+        {
+            Stackeer.ClearAllCachedFiles();
+        }
+
         private void OnDataAlreadyCached()
         {
+            ToggleBinButtonVisiblity(true);
             buttonText.text = "Show";
             progressText.color = Color.green;
             progressText.text = "Done!";
@@ -55,6 +72,7 @@ namespace UnityWebRequestDemo
 
         private void OnDownloadRequired()
         {
+            ToggleBinButtonVisiblity(false);
             buttonText.text = "Fetch";
             actionButton.onClick.RemoveAllListeners();
             actionButton.onClick.AddListener(() =>
@@ -97,6 +115,7 @@ namespace UnityWebRequestDemo
             buttonText.text = "Show";
             progressText.color = Color.green;
             progressText.text = "Done!";
+            ToggleBinButtonVisiblity(true);
 
             actionButton.onClick.RemoveAllListeners();
             actionButton.onClick.AddListener(() =>
@@ -108,6 +127,16 @@ namespace UnityWebRequestDemo
         private void OnDataReady()
         {
             OnCloudDataReady();
+        }
+
+        /// <summary>
+        /// Toggle bin button Visiblity
+        /// if 'true' button will be visible else invisible
+        /// </summary>
+        /// <param name="showButton"></param>
+        private void ToggleBinButtonVisiblity(bool showButton)
+        {
+            binButton.gameObject.SetActive(showButton);
         }
     }
 }
