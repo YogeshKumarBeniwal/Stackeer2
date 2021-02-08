@@ -48,7 +48,7 @@ namespace UnityWebRequestDemo
                 buttonText.text = "Showing...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
-                .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataReady)
+                .WithGetResponseLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataReady)
                 .WithDownloadProgressChangedAction(UpdateProgress).StartStackeer();
             });
         }
@@ -64,7 +64,7 @@ namespace UnityWebRequestDemo
                 buttonText.text = "Fetching...";
                 actionButton.interactable = false;
                 Stackeer.Get().Load(Global.cloudDataUri).SetWebRequestType(WEB_REQUEST_TYPE.HTTP_GET)
-                .WithJsonLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataDownloaded)
+                .WithGetResponseLoadedAction(OnJsonLoaded).WithErrorAction(OnDownloadFailed).WithLoadedAction(OnDataDownloaded)
                 .WithDownloadProgressChangedAction(UpdateProgress).StartStackeer();
             });
         }
